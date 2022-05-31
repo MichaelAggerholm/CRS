@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class VehicleModel extends Model
 {
-    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes, Sortable;
 
     protected $cascadeDeletes = ['vehicles'];
 
@@ -21,6 +22,12 @@ class VehicleModel extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'model',
+        'vehicle_brand_id',
+    ];
+
+    public $sortable = [
+        'id',
         'model',
         'vehicle_brand_id',
     ];

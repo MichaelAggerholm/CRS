@@ -18,12 +18,19 @@ class VehicleModelController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vehicleModels = VehicleModel::all();
-        $vehicle_brands = VehicleBrand::all();
+        // Search input on publishers.index view
+        $searchTerm = $request->input('searchVehicleModels');
 
-        return view('vehicleModels.index', compact(['vehicleModels', 'vehicle_brands']));
+        // Returnerer index siden med søgning, filtrering og pagination.
+        return view('vehicleModels.index', ['vehicleModels' => VehicleModel::with(['vehicle_brand'])
+            ->when($searchTerm, function ($query) use ($searchTerm) {
+                $query->where('model', $searchTerm);
+                $query->orWhereHas('vehicle_brand', function($authorQuery) use ($searchTerm) {
+                    $authorQuery->where('brand', 'LIKE', '%'.$searchTerm.'%');
+                });
+            })->sortable()->paginate(15)]);
     }
 
     /**

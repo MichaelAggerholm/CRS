@@ -1,16 +1,8 @@
 @extends('layouts.app')
+
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Vehicle types - index page</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('vehicleTypes.create') }}"> Opret ny vehicle type</a>
-            </div>
-        </div>
-    </div>
+    <x-headerWithSearch title="Alle Typer" name="searchVehicleTypes" link="vehicleTypes.create" />
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -18,25 +10,41 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table class="table table-sm mt-2">
+        <thead>
         <tr>
-            <th>Brand</th>
+            <th scope="col" style="width: 10%">@sortablelink('id', 'ID')</th>
+            <th scope="col" style="width: 70%">@sortablelink('type', 'Type')</th>
+            <th scope="col" style="width: 20%"></th>
         </tr>
+        </thead>
+        <tbody>
+        @if($vehicleTypes->count() == 0)
+            <tr>
+                <td colspan="5">Der er ingen typer at vise..</td>
+            </tr>
+        @endif
+
         @foreach ($vehicleTypes as $vehicleType)
             <tr>
-                <td>{{ $vehicleType->type }}</td>
+                <th scope="row">{{Str::limit($vehicleType->id, 3, $end='..')}}</th>
+                <td>{{Str::limit($vehicleType->type, 20, $end='..')}}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('vehicleTypes.show',$vehicleType->id) }}">Vis</a>
-                    <a class="btn btn-primary" href="{{ route('vehicleTypes.edit',$vehicleType->id) }}">Rediger</a>
                     <form action="{{ route('vehicleTypes.destroy',$vehicleType->id) }}" method="POST">
+                        <a class="btn btn-info btn-sm" href="{{ route('vehicleTypes.show',$vehicleType->id) }}">Detaljer</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('vehicleTypes.edit',$vehicleType->id) }}">Rediger</a>
 
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Slet</button>
+
+                        <button type="submit" class="btn btn-danger btn-sm">Slet</button>
                     </form>
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
+
+    {{$vehicleTypes->links("pagination::bootstrap-4")}}
 
 @endsection

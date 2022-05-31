@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class VehicleType extends Model
 {
-    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes, Sortable;
 
     protected $cascadeDeletes = ['vehicles'];
 
@@ -21,6 +22,12 @@ class VehicleType extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'type',
+    ];
+
+    // Felter som skal inkluderes i filtrering på index siden.
+    public $sortable = [
+        'id',
         'type',
     ];
 
