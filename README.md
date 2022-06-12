@@ -6,6 +6,8 @@
 2. [Opstilling](#opstilling)
 3. [Start projektet](#start-projektet)
 4. [Frontend](#frontend)
+   1. [Blade](#blade)
+   2. [Bulma](#bulma)
 5. [Backend](#backend)
 6. [Udvidelser](#udvidelser)
 
@@ -60,12 +62,12 @@ Derfor er næste skridt kun at køre dockermiljøet op i detached mode, migrate 
 
 Som frontend framework har jeg valgt at arbejde i laravels blade framework, med css frameworket Bulma.
 
-Blade intro: <br/>
-*tekst* <br/>
+#### Blade
+*tekst intro* <br/>
 https://laravel.com/docs/9.x/blade
 
-Bulma intro: <br/>
-*tekst* <br/>
+#### Bulma
+*tekst intro* <br/>
 https://bulma.io/
 
 ### Backend
