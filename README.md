@@ -5,7 +5,9 @@
 1. [Introduktion](#introduktion)
 2. [Opstilling](#opstilling)
 3. [Start projektet](#start-projektet)
-4. [Udvidelser](#udvidelser)
+4. [Frontend](#frontend)
+5. [Backend](#backend)
+6. [Udvidelser](#udvidelser)
 
 ### Introduktion
 
@@ -54,7 +56,22 @@ Derfor er næste skridt kun at køre dockermiljøet op i detached mode, migrate 
 
        http://127.0.0.1:8000/
 
-### Koden
+### Frontend
+
+Som frontend framework har jeg valgt at arbejde i laravels blade framework, med css frameworket Bulma.
+
+Blade intro: <br/>
+*tekst* <br/>
+https://laravel.com/docs/9.x/blade
+
+Bulma intro: <br/>
+*tekst* <br/>
+https://bulma.io/
+
+### Backend
+
+*tekst noget alla valgt at benytte php frameworket Laravel og en intro.* <br/>
+
 #### soft deletes / cascading soft deletes:
 I projektet benyttes der soft deletes på alle tables.
 På udvalgte tables bruges der også cascading soft deletes, hvis man sletter et bil brand, eller model osv.. vil bilerne herunder også blive soft deleted.
